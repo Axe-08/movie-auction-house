@@ -447,7 +447,11 @@
             filterText: ''
         };
         function getServerUrl() {
-            // You can change this to your computer's IP address
+            // For development
+            if (window.location.hostname === 'localhost') {
+                return 'http://localhost:3001';
+            }
+            // For production with ngrok
             return 'https://a2af-115-243-103-7.ngrok-free.app';
         }
         // Initialize socket connection
@@ -460,7 +464,11 @@
                 transports: ['websocket'],
                 reconnection: true,
                 reconnectionAttempts: 5,
-                reconnectionDelay: 1000
+                reconnectionDelay: 1000,
+                cors: {
+                    origin: "*",
+                    methods: ["GET", "POST"]
+                }
             });
 
             socket.on('connect', () => {

@@ -74,7 +74,6 @@ class CatalogueManager {
                     <td>${crew.category || 'N/A'}</td>
                     <td>${crew.rating || 'N/A'}</td>
                     <td>${((crew.base_price || 0) / 10000000).toFixed(2)}</td>
-                    <td>${((crew.current_bid || crew.base_price || 0) / 10000000).toFixed(2)}</td>
                     <td><span class="status ${crew.status || 'available'}">${(crew.status || 'AVAILABLE').toUpperCase()}</span></td>
                     <td>${crew.buyer_name || '-'}</td>
                 </tr>

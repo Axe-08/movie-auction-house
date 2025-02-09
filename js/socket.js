@@ -115,16 +115,17 @@ class SocketManager {
     }
 
     static async handleSaleComplete(data) {
+        console.log('Received sale_complete event:', data);
         try {
-            console.log('Received sale_complete event:', data);
             await State.loadCatalogue();
             
             if (data.productionHouseId === State.houseData?.houseId) {
                 await State.loadPurchasedCrew();
             }
+            // Load updated stats after any sale
+            await State.loadHouseStats();
         } catch (error) {
             console.error('Error handling sale complete:', error);
-            await this.retryOperation(() => State.loadCatalogue());
         }
     }
 
